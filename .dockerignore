@@ -1,0 +1,13 @@
+.git
+.next
+node_modules
+config.ini
+.env*
+*.db*
+.venv
+venv
+certs/*.pem
+certs/*.cnf
+tmp
+*.tsbuildinfo
+npm-debug.log*

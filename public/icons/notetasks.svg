@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">NoteTasks app icon</title>
+  <rect width="512" height="512" rx="108" fill="#111827"/>
+  <path d="M147 120h218c20 0 36 16 36 36v152l-93 84H147c-20 0-36-16-36-36V156c0-20 16-36 36-36Z" fill="#fff3b8"/>
+  <path d="M308 392v-67c0-10 8-18 18-18h75l-93 85Z" fill="#f5c15e"/>
+  <path d="M174 203h164" stroke="#18212f" stroke-width="24" stroke-linecap="round"/>
+  <path d="M174 265h105" stroke="#18212f" stroke-width="24" stroke-linecap="round"/>
+  <circle cx="365" cy="157" r="42" fill="#22c55e"/>
+  <path d="m344 156 15 16 28-33" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

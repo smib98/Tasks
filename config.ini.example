@@ -1,0 +1,25 @@
+# Copy this file to config.ini before running NoteTasks.
+# config.ini is ignored by Git so credentials and personal paths stay local.
+
+[server]
+# Keep this on 127.0.0.1 unless you deliberately want LAN access.
+host = 127.0.0.1
+http_port = 3000
+https_enabled = false
+https_port = 3443
+
+[database]
+# SQLite paths are resolved relative to prisma/schema.prisma.
+url = file:./notetasks.db
+
+[gemini]
+# Optional. Create a Gemini API key and paste it here without quotes.
+api_key =
+model = gemini-3.5-flash
+
+[whisper]
+# Optional local voice transcription. Install it with: npm run setup:whisper
+python_bin = .venv/bin/python
+model = base
+device = auto
+compute_type = auto

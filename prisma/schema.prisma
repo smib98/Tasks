@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id          String       @id @default(cuid())
+  title       String
+  description String
+  category    String       @default("work")
+  status      String       @default("active")
+  priority    String       @default("Medium")
+  estimatedMinutes Int?
+  deadline    DateTime?
+  color       String       @default("yellow")
+  createdBy   String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  completedAt DateTime?
+  people      TaskPerson[]
+  notes       TaskNote[]
+  subtasks    TaskSubtask[]
+  events      TaskEvent[]
+
+  @@index([status])
+  @@index([category])
+  @@index([priority])
+  @@index([estimatedMinutes])
+  @@index([deadline])
+  @@index([updatedAt])
+}
+
+model TaskPerson {
+  id          String   @id @default(cuid())
+  taskId      String
+  personName  String
+  personEmail String?
+  createdAt   DateTime @default(now())
+  task        Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([taskId])
+  @@unique([taskId, personName])
+}
+
+model TaskNote {
+  id        String   @id @default(cuid())
+  taskId    String
+  type      String
+  text      String
+  createdBy String?
+  createdAt DateTime @default(now())
+  task      Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([taskId])
+  @@index([createdAt])
+}
+
+model TaskSubtask {
+  id          String    @id @default(cuid())
+  taskId      String
+  title       String
+  completed   Boolean   @default(false)
+  position    Int       @default(0)
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  task        Task      @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([taskId])
+  @@index([completed])
+  @@index([position])
+}
+
+model TaskEvent {
+  id        String   @id @default(cuid())
+  taskId    String
+  eventType String
+  summary   String
+  oldValue  String?
+  newValue  String?
+  createdBy String?
+  createdAt DateTime @default(now())
+  task      Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([taskId])
+  @@index([eventType])
+  @@index([createdAt])
+}
